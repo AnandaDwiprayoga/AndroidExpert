@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 password.length < 6
             }
 
-        //observalble untuk menggabungkan data stream yang mengalir
+        //observable.merge untuk menggabungkan data stream yang mengalir
         val passwordConfirmationStream = Observable.merge(
             RxTextView.textChanges(binding.edPassword)
                 .map { password ->
@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             showPasswordConfirmationAlert(it)
         }
 
+        //menggabungkan ketiga data stream dan menghasilkan output 1 terbaru
         val invalidFieldStream = Observable.combineLatest(
             emailStream,
             passwordStream,
