@@ -8,6 +8,6 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("list")
-    fun getList(): Flowable<ListTourismResponse>
+    suspend fun getList(): ListTourismResponse
 
 }
