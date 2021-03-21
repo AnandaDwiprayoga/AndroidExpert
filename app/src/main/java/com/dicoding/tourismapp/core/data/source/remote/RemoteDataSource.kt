@@ -21,17 +21,11 @@ import kotlinx.coroutines.flow.flowOn
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteDataSource private constructor(private val apiService: ApiService) {
-    companion object {
-        @Volatile
-        private var instance: RemoteDataSource? = null
-
-        fun getInstance(apiService: ApiService): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(apiService)
-            }
-    }
+@Singleton
+class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
 
     @SuppressLint("CheckResult")
     suspend fun getAllTourism(): Flow<ApiResponse<List<TourismResponse>>> {

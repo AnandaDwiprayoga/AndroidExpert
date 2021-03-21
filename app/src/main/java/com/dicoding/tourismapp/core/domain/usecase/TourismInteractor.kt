@@ -6,8 +6,9 @@ import com.dicoding.tourismapp.core.domain.model.Tourism
 import com.dicoding.tourismapp.core.domain.repository.ITourismRepository
 import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class TourismInteractor(private val toursmRepository: ITourismRepository) : TourismUseCase {
+class TourismInteractor @Inject constructor(private val toursmRepository: ITourismRepository) : TourismUseCase {
     override fun getAllTourism(): Flow<Resource<List<Tourism>>> = toursmRepository.getAllTourism()
 
     override fun getFavoriteTourism(): Flow<List<Tourism>> = toursmRepository.getFavoriteTourism()
