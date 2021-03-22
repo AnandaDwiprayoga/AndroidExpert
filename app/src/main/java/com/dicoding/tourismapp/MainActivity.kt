@@ -1,5 +1,7 @@
 package com.dicoding.tourismapp
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment: Fragment? = null
         var title = getString(R.string.app_name)
+
         when (item.itemId) {
             R.id.nav_home -> {
                 fragment = HomeFragment()
@@ -56,7 +59,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 title = getString(R.string.menu_favorite)
             }
             R.id.nav_map -> {
-                Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show()
+//                val uri = Uri.parse("tourismapp://maps")
+//                startActivity(Intent(Intent.ACTION_VIEW, uri))
+                val intent = Intent()
+                intent.setClassName(this,"com.dicoding.tourismapp.maps.MapsActivity")
+                startActivity(intent)
             }
         }
         if (fragment != null) {
